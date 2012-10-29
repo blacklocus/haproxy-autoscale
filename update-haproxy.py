@@ -59,11 +59,11 @@ def main():
         logging.info('Fetching PID from %s.' % args.pid)
         pid = file_contents(filename=args.pid)
         
-        # Restart haproxy.
-        logging.info('Restarting haproxy.')
-        command = '''%s -p %s -f %s -sf %s''' % (args.haproxy, args.pid, args.output, pid or '')
-        logging.info('Executing: %s' % command)
-        subprocess.call(command, shell=True)
+        # Letting Monit handle the actual restarting 
+#        logging.info('Restarting haproxy.')
+#        command = '''%s -p %s -f %s -sf %s''' % (args.haproxy, args.pid, args.output, pid or '')
+#        logging.info('Executing: %s' % command)
+#        subprocess.call(command, shell=True)
     else:
         logging.info('Configuration unchanged. Skipping restart.')
     
