@@ -41,6 +41,19 @@ def get_running_instances(access_key=None, secret_key=None, security_group=None)
         instances = conn.get_all_instances()
         return instances
 
+def get_running_instances_by_tag(access_key=None, secret_key=None, tagKey=None, tagValue=None):
+    '''
+    Get all running instances. Only with the given tag and value.
+    '''
+    logging.debug('get_running_instances_by_tag()')
+    conn = EC2Connection(aws_access_key_id=access_key,
+                         aws_secret_access_key=secret_key)
+
+    reservations = conn.get_all_instances(filters={'tag:' + tagKey : tagValue})
+    instances = [i for r in reservations for i in r.instances]
+    running_instances = [i for i in instances if i.state == 'running']
+    
+    return running_instances
 
 def file_contents(filename=None, content=None):
     '''
