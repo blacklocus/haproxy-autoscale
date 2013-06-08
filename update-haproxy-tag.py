@@ -39,7 +39,7 @@ def main():
 #        logging.info('Getting instances for %s.' % tag)
         instances[tag] = get_running_instances_by_tag(access_key=args.access_key,
                                                       secret_key=args.secret_key,
-                                                      tag_key='aws:autoscaling:groupName'
+                                                      tag_key='aws:autoscaling:groupName',
                                                       tag_value=tag)
     # Generate the new config from the template.
 #    logging.info('Generating configuration for haproxy.')
